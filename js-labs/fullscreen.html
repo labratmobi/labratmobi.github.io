@@ -25,9 +25,21 @@ function onFullScreenButtonClick(event)
 }
 
 
+function lockScreenToLandscape()
+{
+	var type = "landscape-primary";
+	var lockOrientation = screen["lockOrientation"] || screen["mozLockOrientation"] || screen["msLockOrientation"] || null;
+	
+	if(lockOrientation)
+	{
+		lockOrientation(type);
+	}	
+}
+
 function onFullscreenChange(event)
 {
 	console.log("window.innerWidth: " + window.innerWidth + ", window.innerHeight: " + window.innerHeight);
+	lockScreenToLandscape();
 }
 
 function triggerFullscreen()
