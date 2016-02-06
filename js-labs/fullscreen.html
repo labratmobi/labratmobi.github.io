@@ -28,8 +28,14 @@ function onFullScreenButtonClick(event)
 function lockScreenToLandscape()
 {
 	var type = "landscape-primary";
-	var lockOrientation = screen["lockOrientation"] || screen["mozLockOrientation"] || screen["msLockOrientation"] || null;
 	
+	if(screen["orientation"] && screen["orientation"]["lock"])
+	{
+		screen["orientation"]["lock"](type);
+		return;
+	}
+	
+	var lockOrientation = screen["lockOrientation"] || screen["mozLockOrientation"] || screen["msLockOrientation"] || null;
 	if(lockOrientation)
 	{
 		lockOrientation(type);
